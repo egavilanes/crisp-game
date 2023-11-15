@@ -117,11 +117,9 @@ let targetScore = 1000;
 function update() {
   if (!ticks) {
     stars = times(20, () => {
-      // Random number generator function
-      // rnd( min, max )
       const posX = rnd(0, G.WIDTH);
       const posY = rnd(0, G.HEIGHT);
-      // An object of type Star with appropriate properties
+
       return {
         // Creates a Vector
         pos: vec(posX, posY),
@@ -189,12 +187,14 @@ function update() {
     char("a", t.pos);
     color("red");
     box(player.pos, 4);
-    //color("transparent");
-    //const isCollidingWithPlayer = box(player.pos, 3).isColliding.char.a;
-    //const isCollidingWithCrosshair = char("b", G.WIDTH * 0.5 - 2, G.HEIGHT * 0.5).isColliding.char.a;
+    const speedX = 0.25; // Adjust the speed as needed
+    const rangeX = G.WIDTH / 2; // Adjust the range as needed
+    
+    // Move the target side to side using a sine function
+    t.pos.x += speedX * Math.sin(ticks * 0.15);
+
     if (input.isJustPressed) {
       if (char("b", G.WIDTH * 0.5 - 2, G.HEIGHT * 0.5).isColliding.char.a) {
-      // if (isCollidingWithCrosshair || t.pos == crosshair.pos) {
         color("blue");
         particle(t.pos);
         color("black");
