@@ -117,6 +117,8 @@ let crosshair;
 
 let targetScore = 1000;
 
+let gameDuration = 60;
+
 function update() {
   if (!ticks) {
     stars = times(20, () => {
@@ -242,5 +244,14 @@ function update() {
   if (G.REMAINING == 0 ) {
     end();
     G.REMAINING = 20;
+  }
+
+  gameDuration--;
+
+  // Check if the game duration has reached zero
+  if (gameDuration <= 0) {
+    end(); // Game over
+    G.REMAINING = 20; // Reset remaining attempts for the next game
+    gameDuration = 60; // Reset the game duration for subsequent games
   }
 }
