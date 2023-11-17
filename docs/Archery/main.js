@@ -117,7 +117,7 @@ let crosshair;
 
 let targetScore = 1000;
 
-let gameDuration = 60;
+let gameDuration = 1800;
 
 function update() {
   if (!ticks) {
