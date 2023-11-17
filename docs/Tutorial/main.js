@@ -28,23 +28,26 @@ mousemovemethod = function (e) {
 document.addEventListener('mousemove', mousemovemethod);
 
 
-title = "Archery?";
+title = "Archery?"
+
 
 description = `
-     Move with mouse
-    [Click the mouse] 
-    when the white box
-     hits the target
+           -------->
+
+        move with mouse!
+       [click the mouse] 
+        when the red box
+   hits the center of the target
 `;
 
 characters = [
 `
-  rr
- rccr
+ rrrr
+rrccrr
 rcrrcr
 rcrrcr
- rccr
-  rr
+rrccrr
+ rrrr
 `,
 `
       
@@ -135,11 +138,12 @@ function update() {
 
     targets = [];
   }
-  //text("hello", G.WIDTH/2, G.HEIGHT/2);
-  color("black");
+ // Draw a line between player and crosshair
+ color("black"); // Choose the line color
+ line(player.pos.x, player.pos.y, crosshair.pos.x, crosshair.pos.y);
+
+  color("red");
   char("b", crosshair.pos);
-  //color("blue");
-  //box(player.pos, 1);
   player.pos = vec(input.pos.x, input.pos.y);
   player.pos.clamp(G.WIDTH/2 - 8, G.WIDTH/2 + 5, G.HEIGHT/2 - 6, G.HEIGHT/2 + 8);
 
@@ -183,13 +187,13 @@ function update() {
   });
 
   remove(targets, (t) => {
-    color("black");
+    color("blue");
     char("a", t.pos);
-    color("red");
-    box(player.pos, 4);
+    color("black");
+    box(player.pos, 2);
     const speedX = 0.25; // Adjust the speed as needed
-    const rangeX = G.WIDTH / 2; // Adjust the range as needed
-    
+    const rangeX = G.WIDTH / .15; // Adjust the range as needed
+
     // Move the target side to side using a sine function
     t.pos.x += speedX * Math.sin(ticks * 0.15);
 
